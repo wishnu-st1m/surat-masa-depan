@@ -1,93 +1,121 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surat Masa Depan | Future Mail</title>
-    <link rel="icon" type="image/png" href="jam.jpg.jpeg"> 
+    <link rel="icon" type="image/png" href="jam.jpeg" />
     <!-- Menggunakan ikon Font Awesome untuk tampilan yang lebih baik -->
-    <link rel="stylesheet" href="stylesheet.css">
-</head>
-<body>
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body>
     <div id="auth-status" class="status">Menghubungkan ke server...</div>
     <main class="container">
-        
-        <section class="card left">
-            <h1 class="title">A LETTER FOR THE FUTURE</h1>
+      <section class="card left">
+        <h1 class="title">A LETTER FOR THE FUTURE</h1>
 
-            <div class="top-row-content">
-                <!-- Kolom Kiri: Surat -->
-                <div class="letter-column">
-                    <label for="content">Isi Surat Anda (maks. 5000 karakter):</label>
-                    <textarea id="content" placeholder="Dear future me," rows="12" maxlength="5000"></textarea>
-                </div>
+        <div class="top-row-content">
+          <!-- Kolom Kiri: Surat -->
+          <div class="letter-column">
+            <label for="content">Isi Surat Anda (maks. 5000 karakter):</label>
+            <textarea
+              id="content"
+              placeholder="Dear future me,"
+              rows="12"
+              maxlength="5000"
+            ></textarea>
+          </div>
 
-                <!-- Kolom Kanan: Detail Penerima -->
-                <aside class="recipient-column">
-                    <label for="recipient-email">Email Penerima Utama</label>
-                    <!-- ID disesuaikan agar cocok dengan logika JS -->
-                    <input id="recipient-email" placeholder="kamu@email.com" type="email" required /> 
+          <!-- Kolom Kanan: Detail Penerima -->
+          <aside class="recipient-column">
+            <label for="recipient-email">Email Penerima Utama</label>
+            <!-- ID disesuaikan agar cocok dengan logika JS -->
+            <input
+              id="recipient-email"
+              placeholder="kamu@email.com"
+              type="email"
+              required
+            />
 
-                    <label for="letter-title">Nama Surat/Judul</label>
-                    <input type="text" id="letter-title" placeholder="Contoh: Pesan untuk Masa Kuliah">
+            <label for="letter-title">Nama Surat/Judul</label>
+            <input
+              type="text"
+              id="letter-title"
+              placeholder="Contoh: Pesan untuk Masa Kuliah"
+            />
 
-                    <label for="sender-name">Nama Pengirim</label>
-                    <input type="text" id="sender-name" placeholder="Contoh: Saya yang Sekarang">
+            <label for="sender-name">Nama Pengirim</label>
+            <input
+              type="text"
+              id="sender-name"
+              placeholder="Contoh: Saya yang Sekarang"
+            />
 
-                    <div class="actions">
-                        <!-- Tombol utama -->
-                        <button id="send-btn" class="btn primary">
-                            <i class="fas fa-lock"></i>
-                            Kunci & Kirim Surat
-                        </button>
-                        <div id="loading-spinner" class="loading-spinner"></div>
-                    </div>
-                </aside>
+            <div class="actions">
+              <!-- Tombol utama -->
+              <button id="send-btn" class="btn primary">
+                <i class="fas fa-lock"></i>
+                Kunci & Kirim Surat
+              </button>
+              <div id="loading-spinner" class="loading-spinner"></div>
             </div>
-
-            <!-- Bagian Bawah: Waktu Pengiriman -->
-            <div class="bottom-row-content">
-                <label>Deliver on</label>
-                <div class="row delivery-time-inputs">
-                    <div class="inline">
-                        <label for="delivery-date">Tanggal</label>
-                        <input id="delivery-date" type="date" required /> 
-                    </div>
-                    <div class="inline">
-                        <label for="delivery-time">Waktu (Jam:Menit)</label>
-                        <input id="delivery-time" type="time" step="60" value="00:00" required /> 
-                    </div>
-                </div>
-            </div>
-
-            <small class="hint">Catatan: Surat akan dikirimkan otomatis ke email penerima di masa depan.</small>
-        </section>
-
-        <!-- DAFTAR SURAT PENDING -->
-        <div class="pending-letters-section">
-            <h2 class="subtitle">Daftar Surat Masa Depan Anda</h2>
-            <ul id="letter-list" class="letter-list">
-                <!-- Surat dimuat di sini -->
-            </ul>
-            <p id="no-letters-message" class="no-letters">Belum ada surat yang dikunci. Mulailah menulis!</p>
+          </aside>
         </div>
+
+        <!-- Bagian Bawah: Waktu Pengiriman -->
+        <div class="bottom-row-content">
+          <label>Deliver on</label>
+          <div class="row delivery-time-inputs">
+            <div class="inline">
+              <label for="delivery-date">Tanggal</label>
+              <input id="delivery-date" type="date" required />
+            </div>
+            <div class="inline">
+              <label for="delivery-time">Waktu (Jam:Menit)</label>
+              <input
+                id="delivery-time"
+                type="time"
+                step="60"
+                value="00:00"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <small class="hint"
+          >Catatan: Surat akan dikirimkan otomatis ke email penerima di masa
+          depan.</small
+        >
+      </section>
+
+      <!-- DAFTAR SURAT PENDING -->
+      <div class="pending-letters-section">
+        <h2 class="subtitle">Daftar Surat Masa Depan Anda</h2>
+        <ul id="letter-list" class="letter-list">
+          <!-- Surat dimuat di sini -->
+        </ul>
+        <p id="no-letters-message" class="no-letters">
+          Belum ada surat yang dikunci. Mulailah menulis!
+        </p>
+      </div>
     </main>
-    
+
     <!-- MODAL CUSTOM -->
     <div id="custom-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title">Pesan</h3>
-            <p id="modal-body">Pesan Anda di sini.</p>
-            <button class="modal-close-btn" onclick="hideModal()">Tutup</button>
-        </div>
+      <div class="modal-content">
+        <h3 id="modal-title">Pesan</h3>
+        <p id="modal-body">Pesan Anda di sini.</p>
+        <button class="modal-close-btn" onclick="hideModal()">Tutup</button>
+      </div>
     </div>
 
     <!-- ANIMASI PENGIRIMAN (Overlay) -->
     <div id="send-animation-overlay">
-        <div class="envelope-container">
-            <i class="fas fa-envelope envelope"></i>
-        </div>
-        <p class="animation-text">Mengunci Surat, Mengirim ke Masa Depan...</p>
+      <div class="envelope-container">
+        <i class="fas fa-envelope envelope"></i>
+      </div>
+      <p class="animation-text">Mengunci Surat, Mengirim ke Masa Depan...</p>
     </div>
-</body>
+  </body>
 </html>
